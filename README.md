@@ -1,50 +1,130 @@
-# Welcome to your Expo app 👋
+# TagMaster
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+TagMaster is a cross-platform mobile application built using **React Native** and **Expo** that allows users to upload images and retrieve associated labels using **AWS Rekognition**, a powerful image analysis service. This project demonstrates the integration of serverless AWS technologies to enhance image recognition functionalities.
 
-## Get started
+![Logo](https://github.com/user-attachments/assets/40f4eea9-f68b-4864-a0b3-7f718997279b)
 
-1. Install dependencies
+---
 
+## Features
+
+- **Image Capture and Upload**: Capture images directly from the camera or pick them from the device's gallery.
+- **AWS Rekognition Integration**: Uses AWS Rekognition to analyze uploaded images and return detected labels with confidence scores.
+- **Real-Time Feedback**: Displays results dynamically once the analysis is complete.
+- **User-Friendly Interface**: Simple and clean design for seamless user interaction.
+
+---
+
+## Prerequisites
+
+Before running the project, ensure you have the following:
+
+1. **AWS Account**: Set up an AWS account and create the required IAM roles and policies.
+2. **IAM Role/Policy**: Grant permissions for Rekognition in your AWS IAM user:
+   - `rekognition:DetectLabels`
+3. **React Native** and **Expo CLI** installed on your system.
+4. Node.js installed (for dependencies).
+
+---
+
+## Installation
+
+1. Clone this repository:
+   ```bash
+   git clone https://github.com/your-repository/tagmaster.git
+   cd tagmaster
+   ```
+
+2. Install dependencies:
    ```bash
    npm install
    ```
 
-2. Start the app
-
-   ```bash
-    npx expo start
+3. Set up AWS credentials:
+   Replace the placeholder values in the AWS configuration section of the code with your **Access Key** and **Secret Key**:
+   ```javascript
+   const rekognition = new Rekognition({
+       accessKeyId: "YOUR_ACCESS_KEY",
+       secretAccessKey: "YOUR_SECRET_KEY",
+       region: "YOUR_REGION",
+   });
    ```
 
-In the output, you'll find options to open the app in a
+4. Run the development server:
+   ```bash
+   expo start
+   ```
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+5. Scan the QR code to run the app on your device.
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+---
 
-## Get a fresh project
+## Usage
 
-When you're ready, run:
+1. **Choose or Capture an Image**:
+   - Use the app to capture an image from the camera or upload one from the gallery.
 
-```bash
-npm run reset-project
+2. **Upload Image**:
+   - Click the **Upload** button to send the image to AWS Rekognition for processing.
+
+3. **View Results**:
+   - The detected labels with confidence percentages will be displayed once Rekognition processes the image.
+
+---
+
+## Technologies Used
+
+- **React Native**: For building the mobile app interface.
+- **Expo**: For rapid development and deployment.
+- **AWS Rekognition**: For image analysis and label detection.
+
+---
+
+## AWS Rekognition Integration
+
+TagMaster leverages AWS Rekognition's **DetectLabels** API to analyze images. Detected labels include objects, scenes, and activities with confidence scores.
+
+### Example Label Data
+```json
+[
+  {
+    "name": "Tree",
+    "confidence": 99.87
+  },
+  {
+    "name": "Car",
+    "confidence": 97.45
+  },
+  {
+    "name": "Building",
+    "confidence": 92.34
+  }
+]
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+---
 
-## Learn more
+## Screenshots
 
-To learn more about developing your project with Expo, look at the following resources:
+| **Home Screen**                | **Labels Display**               |
+|---------------------------------|-----------------------------------|
+|   ![HomeScreen](https://github.com/user-attachments/assets/6a436a1d-db25-4a2c-b048-de906fc7c09d) |    ![Labels](https://github.com/user-attachments/assets/e0c8e8ed-6ab4-45f3-b985-e0918ecb55f8) |
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+---
 
-## Join the community
+## Future Enhancements
 
-Join our community of developers creating universal apps.
+- Support for Material You theming on Android 12+.
+- Advanced image analysis features (e.g., facial recognition, object tracking).
+- Multi-language support for app text and labels.
+- Offline mode with local image processing.
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+---
+
+## License
+
+This project is licensed under the MIT License. See the `LICENSE` file for details.
+
+---
+
+With **TagMaster**, identifying objects in images has never been easier! 🚀
